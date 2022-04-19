@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Status of your API
+setup api at the root of the project
 """
 from flask import Flask, jsonify
 from models import storage
@@ -31,12 +32,14 @@ app.config['SWAGGER'] = {
 }
 swagger = Swagger(app)
 
+
 @app.teardown_appcontext
 def teardown_session(exception):
     """ method to handle @app.teardown_appcontext
     that calls storage.close()"""
     storage.close()
 
+    
 @app.errorhandler(404)
 def page_not_found(error):
     """ custom handler for 404 errors that returns a
@@ -48,6 +51,6 @@ if __name__ == '__main__':
     HBNB_API_HOST = getenv('HBNB_API_HOST')
     HBNB_API_PORT = getenv('HBNB_API_PORT')
 
-    host ='0.0.0.0' if not HBNB_API_HOST else HBNB_API_HOST
-    port = 5000 if not HBNB_API_PORT else  HBNB_API_PORT
+    host = '0.0.0.0' if not HBNB_API_HOST else HBNB_API_HOST
+    port = 5000 if not HBNB_API_PORT else HBNB_API_PORT
     app.run(host=host, port=port, threaded=True)

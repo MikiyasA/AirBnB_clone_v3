@@ -17,7 +17,7 @@ if models.storage_t == 'db':
                                  ForeignKey('amenities.id', onupdate='CASCADE',
                                             ondelete='CASCADE'),
                                  primary_key=True))
-
+ 
 
 class Place(BaseModel, Base):
     """Representation of Place """
